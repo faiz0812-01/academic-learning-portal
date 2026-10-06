@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#172033">
+<title>Sociology MCQ Test 3</title>
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#f4f7fb;color:#172033;font-family:Arial,Helvetica,sans-serif;font-size:16px}
+.wrap{width:min(100% - 16px,1000px);margin:auto;padding:12px 0 100px}
+.top{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 3px 14px rgba(0,0,0,.07)}
+h1{font-size:22px;margin:0 0 10px}
+.guide{margin:0;line-height:1.5;color:#475569;font-size:14px}
+.q{background:#fff;border-radius:14px;padding:15px;margin:10px 0;box-shadow:0 2px 9px rgba(0,0,0,.06)}
+.qtext{font-size:17px;font-weight:700;line-height:1.45;margin-bottom:12px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.option{display:flex;align-items:flex-start;gap:9px;min-height:52px;padding:13px 12px;border:1px solid #d8dee8;border-radius:11px;background:#fff;cursor:pointer;line-height:1.4;-webkit-tap-highlight-color:transparent}
+.option input{width:22px;height:22px;min-width:22px;margin:1px 0 0;accent-color:#2563eb}
+.label{font-weight:800;min-width:22px}
+.option.correct{color:#087a3d!important;background:#e7f7ed!important;border:2px solid #31a963!important;font-weight:800}
+.option.correct .label{color:#087a3d}
+.option.wrong{background:#fff0f0!important;border:2px solid #e28b8b!important}
+.feedback{display:none;margin-top:10px;font-weight:700;font-size:14px}
+.actions{position:sticky;bottom:8px;z-index:5;display:flex;gap:10px;margin-top:14px;padding:8px;background:rgba(244,247,251,.94);border-radius:14px}
+.btn{border:0;border-radius:11px;min-height:50px;padding:12px 18px;font-weight:800;font-size:16px;cursor:pointer;touch-action:manipulation}
+.submit{background:#172033;color:#fff;flex:1}
+.new{background:#fff;color:#172033;border:1px solid #cbd5e1;flex:1}
+.result{display:none;background:#fff;border-radius:15px;padding:18px;margin:14px 0;text-align:center;box-shadow:0 3px 14px rgba(0,0,0,.08)}
+.score{font-size:28px;font-weight:900;margin-bottom:5px}
+.percent{font-size:18px;font-weight:800}
+.status{margin-top:8px;color:#475569}
+@media(max-width:700px){.options{grid-template-columns:1fr}.qtext{font-size:16px}.actions{position:sticky;bottom:5px;flex-direction:column}.btn{width:100%}}
+@media(min-width:701px){.wrap{padding-top:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>Sociology MCQ Test 3</h1>
+    <p class="guide"><b>How to use:</b> Select one answer for each question. Tap <b>Submit Test</b> to get your final score and correct answers. Tap <b>New Random Test</b> for another set.</p>
+  </div>
+
+  <div id="result" class="result" aria-live="polite">
+    <div class="score" id="score"></div>
+    <div class="percent" id="percent"></div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <form id="quiz"></form>
+
+  <div class="actions">
+    <button class="btn submit" id="submit" type="button">Submit Test</button>
+    <button class="btn new" id="new" type="button">New Random Test</button>
+  </div>
+</div>
+
+<script>
+const bank = [{"q": "Which intellectual movement is known as the “Age of Reason”?", "opts": [["A", "The Middle Ages"], ["B", "The Enlightenment"], ["C", "The Renaissance"], ["D", "The Industrial Revolution"]], "source": "soc1", "answer": "B", "id": 31}, {"q": "Which historical period is known as the “rebirth” of classical learning in Europe?", "opts": [["A", "The Middle Ages"], ["B", "The Enlightenment"], ["C", "The Renaissance"], ["D", "The Industrial Revolution"]], "source": "soc1", "answer": "C", "id": 24}, {"q": "The individual holding two or more conflicting roles at the same time, it is known as ....................?", "opts": [["A", "Master role"], ["B", "Role conflict"], ["C", "Achieved role"], ["D", "Role constrain"]], "source": "econ4", "answer": "C", "id": 150}, {"q": "Who defined social structure as a network of relationships?", "opts": [["A", "A. R. Radcliffe-Brown"], ["B", "Émile Durkheim"], ["C", "Karl Marx"], ["D", "Max Weber"]], "source": "m4video", "answer": "A", "id": 107}, {"q": "Which of the following is a feature of competition?", "opts": [["A", "It is always personal"], ["B", "It is always visible"], ["C", "It is often unconscious"], ["D", "It requires direct communication"]], "source": "m3", "answer": "C", "id": 85}, {"q": "Which society is mainly based on farming and land ownership?", "opts": [["A", "Industrial society"], ["B", "Post-industrial society"], ["C", "Agrarian society"], ["D", "Information society"]], "source": "m4video", "answer": "C", "id": 99}, {"q": "Which of the following is a technological factor of social change?", "opts": [["A", "Invention of internet"], ["B", "Development of kinship system"], ["C", "Population explosion"], ["D", "All of the above"]], "source": "econ4", "answer": "A", "id": 153}, {"q": "In which century did the Industrial Revolution begin?", "opts": [["A", "17th century"], ["B", "18th century"], ["C", "16th century"], ["D", "19th century"]], "source": "soc1", "answer": "B", "id": 4}, {"q": "Which of the following is an example of an ascribed status?", "opts": [["A", "Daughter"], ["B", "Doctor"], ["C", "Teacher"], ["D", "Student"]], "source": "econ4", "answer": "A", "id": 143}, {"q": "Mead's \"generalised other\" is best described as:", "opts": [["A", "The child's imaginary friend"], ["B", "The parent's authority"], ["C", "Society's collective expectations"], ["D", "The child's own desires"]], "source": "m3", "answer": "C", "id": 73}, {"q": "Which sociologist introduced the concept of accommodation?", "opts": [["A", "Robert Park"], ["B", "Burgess"], ["C", "J. M. Baldwin"], ["D", "MacIver"]], "source": "m3", "answer": "A", "id": 77}, {"q": "Freud's theory of socialisation is mainly based on:", "opts": [["A", "Cognitive development"], ["B", "Role-taking and communication"], ["C", "Psychosexual stages and unconscious drives"], ["D", "Social interaction and symbols"]], "source": "m3", "answer": "C", "id": 71}, {"q": "Informal socialization mainly occurs in:", "opts": [["A", "Factories"], ["B", "Courts"], ["C", "Family and peer groups"], ["D", "Government offices"]], "source": "m3", "answer": "C", "id": 62}, {"q": "What is gender socialisation?", "opts": [["A", "Learning social rules through school"], ["B", "Learning gender roles and expectations set by society"], ["C", "Learning new career skills"], ["D", "Learning peer group behaviour"]], "source": "m3", "answer": "B", "id": 66}, {"q": "Social interaction is important because it:", "opts": [["A", "Weakens social relationships"], ["B", "Reduces communication"], ["C", "Creates social roles and norms"], ["D", "Promotes individual isolation"]], "source": "m3", "answer": "C", "id": 83}, {"q": "Young and Mack state that cooperation requires:", "opts": [["A", "Individual success only"], ["B", "Complete independence"], ["C", "No need for skills"], ["D", "Shared motivation and training"]], "source": "m3", "answer": "D", "id": 82}, {"q": "Knowledge based economy is a prime feature of .................... Society", "opts": [["A", "Post-industrial"], ["B", "Agriculture"], ["C", "Industrial"], ["D", "Preindustrial"]], "source": "econ4", "answer": "A", "id": 130}, {"q": "Kinship relationship that are based on blood ties, it is known as ....................?", "opts": [["A", "Consanguineous Kinship"], ["B", "Affinal kinship"], ["C", "Secondary kinship"], ["D", "Tertiary kinship"]], "source": "econ4", "answer": "A", "id": 136}, {"q": "Which of the following sociologist consider society as a biological organism?", "opts": [["A", "Herbert Spencer"], ["B", "Merton"], ["C", "Karl Marx"], ["D", "Radcliffe Brown"]], "source": "econ4", "answer": "D", "id": 139}, {"q": "Which philosophical movement emphasizes knowledge through sensory experience?", "opts": [["A", "Rationalism"], ["B", "Idealism"], ["C", "Empiricism"], ["D", "Existentialism"]], "source": "soc1", "answer": "C", "id": 29}, {"q": "According to Radcliffe Brown, which of the following is not a part of social structure?", "opts": [["A", "Relationship between people"], ["B", "Social roles"], ["C", "Social Positions"], ["D", "Cultural values"]], "source": "econ4", "answer": "C", "id": 141}, {"q": "Which thinker proposed the idea of separation of powers?", "opts": [["A", "Thomas Hobbes"], ["B", "Jean-Jacques Rousseau"], ["C", "John Locke"], ["D", "Baron de Montesquieu"]], "source": "soc1", "answer": "D", "id": 21}, {"q": "Which of the following considers the major sources of social change?", "opts": [["A", "Discovery"], ["B", "Invention"], ["C", "Diffusion"], ["D", "All of the above"]], "source": "econ4", "answer": "B", "id": 152}, {"q": ".................... is a system of interconnected relationships, institutions and roles", "opts": [["A", "Ascribed status"], ["B", "Socialization"], ["C", "Social structure"], ["D", "None of the above"]], "source": "econ4", "answer": "C", "id": 138}, {"q": "The sociologist who analyzed social stratification in terms of class, status, and power is __________", "opts": [["A", "Auguste Comte"], ["B", "Emile Durkheim"], ["C", "Max Weber"], ["D", "Karl Marx"]], "source": "soc1", "answer": "C", "id": 10}, {"q": "In which year was the term Sociology coined?", "opts": [["A", "1849"], ["B", "1739"], ["C", "1839"], ["D", "1921"]], "source": "soc1", "answer": "C", "id": 2}, {"q": "Which sociologist proposed the Law of Three Stages?", "opts": [["A", "Auguste Comte"], ["B", "Emile Durkheim"], ["C", "Max Weber"], ["D", "Karl Marx"]], "source": "soc1", "answer": "A", "id": 19}, {"q": "Long-term conflict resolution where groups become similar is called:", "opts": [["A", "Accommodation"], ["B", "Assimilation"], ["C", "Violence"], ["D", "Disintegration"]], "source": "m3", "answer": "B", "id": 91}, {"q": "Find out a characteristics of society?", "opts": [["A", "Society is abstract"], ["B", "Interdependence"], ["C", "Difference"], ["D", "All of the above"]], "source": "econ4", "answer": "D", "id": 126}, {"q": "Social interaction is considered the basic building block of:", "opts": [["A", "Economic systems"], ["B", "Social relationships"], ["C", "Physical development"], ["D", "Religious beliefs"]], "source": "m3", "answer": "B", "id": 79}, {"q": "Who is known as the “father of Humanism”?", "opts": [["A", "Dante Alighieri"], ["B", "Francesco Petrarch"], ["C", "Giovanni Boccaccio"], ["D", "Desiderius Erasmus"]], "source": "soc1", "answer": "B", "id": 25}, {"q": "Which of the following is NOT a characteristic of society?", "opts": [["A", "Permanence"], ["B", "Interdependence"], ["C", "Isolation"], ["D", "Change"]], "source": "m4video", "answer": "C", "id": 98}, {"q": "In a post-industrial society, the prevalent sector of the economy is:", "opts": [["A", "Agriculture"], ["B", "Services and information"], ["C", "Manufacturing"], ["D", "Mining"]], "source": "econ4", "answer": "B", "id": 128}, {"q": "Medial Sociology primarily studies", "opts": [["A", "Workplaces and industries"], ["B", "Health, illness, and healthcare"], ["C", "Village life and agriculture"], ["D", "Urban development"]], "source": "soc1", "answer": "B", "id": 37}, {"q": "Who introduced the concept of “sick role”?", "opts": [["A", "Louis F. Ward"], ["B", "Talcott Parsons"], ["C", "Ferdinand Tonnies"], ["D", "Friedrich Engels"]], "source": "soc1", "answer": "B", "id": 38}, {"q": "The social structure of pre-revolutionary France was known as the ______ system", "opts": [["A", "Feudal system"], ["B", "Estates system"], ["C", "Caste system"], ["D", "Guild system"]], "source": "soc1", "answer": "B", "id": 16}, {"q": "Enacted institutions are:", "opts": [["A", "Natural"], ["B", "Unplanned"], ["C", "Informal"], ["D", "Deliberately created"]], "source": "m4video", "answer": "D", "id": 104}, {"q": "Role conflict occurs when:", "opts": [["A", "A person fails to perform any role"], ["B", "A person performs only one role"], ["C", "Two or more roles create conflicting demands"], ["D", "A role is not clearly defined"]], "source": "m4video", "answer": "C", "id": 116}, {"q": "Conflict that disrupts normal cooperation is known as:", "opts": [["A", "Integrative effect"], ["B", "Disintegrative effect"], ["C", "Personal conflict"], ["D", "Cultural conflict"]], "source": "m3", "answer": "B", "id": 75}, {"q": "Cultural competition occurs when:", "opts": [["A", "Two cultures compete for dominance"], ["B", "Two people compete for a job"], ["C", "Political parties compete for votes"], ["D", "Students compete for ranks"]], "source": "m3", "answer": "A", "id": 88}, {"q": "Assimilation is best described as:", "opts": [["A", "Sudden adjustment"], ["B", "Temporary compromise"], ["C", "Gradual cultural absorption"], ["D", "Forced agreement"]], "source": "m3", "answer": "C", "id": 78}, {"q": "Which Renaissance scholar was a famous Dutch humanist?", "opts": [["A", "Dante Alighieri"], ["B", "Francesco Petrarch"], ["C", "Giovanni Boccaccio"], ["D", "Desiderius Erasmus"]], "source": "soc1", "answer": "D", "id": 26}, {"q": "What does the term \"status\" refer to in sociology?", "opts": [["A", "A person's effort"], ["B", "A person's Behaviour"], ["C", "A person's ability"], ["D", "A person's position in society"]], "source": "m4video", "answer": "D", "id": 110}, {"q": "Talcott Parsons book “________” introduced the concept of the sick role.", "opts": [["A", "Essays in Sociological theory"], ["B", "The Structure of Social Action"], ["C", "The Social System"], ["D", "Societies: Evolutionary and Comparative Perspectives"]], "source": "soc1", "answer": "C", "id": 44}, {"q": "Which of the following is not an area of Industrial Sociology?", "opts": [["A", "Industrial Organization and structure"], ["B", "Social Impact of Industrialization"], ["C", "Rural Community Life"], ["D", "Conflict and Cooperation"]], "source": "soc1", "answer": "C", "id": 40}, {"q": "According to Kingsley Davis, the basic needs of society are ....................?", "opts": [["A", "Socialization, Conflict, Assimilation, Interaction"], ["B", "Population, Specialization, Solidarity, Continuity"], ["C", "Population, Communication, Integration, Conflict"], ["D", "Specialization, Integration, Solidarity, Communication"]], "source": "econ4", "answer": "B", "id": 125}, {"q": "According to Cooley, cooperation occurs when:", "opts": [["A", "People are forced to work together"], ["B", "Individuals recognize a common interest"], ["C", "People have similar physical strength"], ["D", "Individuals compete with each other"]], "source": "m3", "answer": "B", "id": 80}, {"q": "Which of the following is NOT a goal of socialization?", "opts": [["A", "Impulse control"], ["B", "Role preparation"], ["C", "Cultural isolation"], ["D", "Value development"]], "source": "m3", "answer": "C", "id": 61}, {"q": "Which institution is considered the most powerful formal agency of social control?", "opts": [["A", "School"], ["B", "Family"], ["C", "Public opinion"], ["D", "Law and State"]], "source": "m3", "answer": "D", "id": 51}, {"q": "Manifest functions are:", "opts": [["A", "Hidden functions"], ["B", "Unintended effects"], ["C", "Intended and visible functions"], ["D", "Negative outcomes"]], "source": "m4video", "answer": "C", "id": 105}];
+let questions = [];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function esc(value) {
+  return String(value).replace(/[&<>"']/g, function(c) {
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+
+function render() {
+  questions = shuffle(bank);
+  const form = document.getElementById('quiz');
+  const result = document.getElementById('result');
+
+  result.style.display = 'none';
+  document.getElementById('score').textContent = '';
+  document.getElementById('percent').textContent = '';
+  document.getElementById('status').textContent = '';
+  form.innerHTML = '';
+
+  questions.forEach(function(q, i) {
+    const box = document.createElement('section');
+    box.className = 'q';
+    box.dataset.index = i;
+
+    const opts = shuffle(q.opts);
+    box.innerHTML =
+      '<div class="qtext">' + (i + 1) + '. ' + esc(q.q) + '</div>' +
+      '<div class="options">' +
+      opts.map(function(o) {
+        return '<label class="option" data-letter="' + esc(o[0]) + '">' +
+          '<input type="radio" name="q' + i + '" value="' + esc(o[0]) + '">' +
+          '<span class="label">' + esc(o[0]) + '.</span>' +
+          '<span>' + esc(o[1]) + '</span>' +
+          '</label>';
+      }).join('') +
+      '</div>' +
+      '<div class="feedback"></div>';
+
+    form.appendChild(box);
+  });
+}
+
+function submitTest() {
+  let score = 0;
+
+  questions.forEach(function(q, i) {
+    const box = document.querySelector('.q[data-index="' + i + '"]');
+    const selected = box.querySelector('input[type="radio"]:checked');
+
+    box.querySelectorAll('.option').forEach(function(opt) {
+      opt.classList.remove('correct', 'wrong');
+      if (opt.dataset.letter === q.answer) {
+        opt.classList.add('correct');
+      }
+    });
+
+    const feedback = box.querySelector('.feedback');
+
+    if (selected) {
+      if (selected.value === q.answer) {
+        score++;
+        feedback.textContent = '✓ Correct';
+      } else {
+        box.querySelector('.option[data-letter="' + selected.value + '"]').classList.add('wrong');
+        feedback.textContent = 'Correct answer: ' + q.answer;
+      }
+    } else {
+      feedback.textContent = 'Not answered. Correct answer: ' + q.answer;
+    }
+
+    feedback.style.display = 'block';
+  });
+
+  const total = questions.length;
+  const percentage = Math.round((score / total) * 100);
+
+  document.getElementById('score').textContent = 'Final Score: ' + score + ' / ' + total;
+  document.getElementById('percent').textContent = percentage + '%';
+  document.getElementById('status').textContent =
+    score === total ? 'Excellent!' :
+    percentage >= 80 ? 'Very good!' :
+    percentage >= 50 ? 'Good effort — review the incorrect answers.' :
+    'Keep practising and review the correct answers.';
+
+  const result = document.getElementById('result');
+  result.style.display = 'block';
+  result.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+document.getElementById('submit').addEventListener('click', submitTest);
+document.getElementById('new').addEventListener('click', function() {
+  render();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+render();
+</script>
+</body>
+</html>
