@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#172033">
+<title>Sociology MCQ Test 1</title>
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#f4f7fb;color:#172033;font-family:Arial,Helvetica,sans-serif;font-size:16px}
+.wrap{width:min(100% - 16px,1000px);margin:auto;padding:12px 0 100px}
+.top{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 3px 14px rgba(0,0,0,.07)}
+h1{font-size:22px;margin:0 0 10px}
+.guide{margin:0;line-height:1.5;color:#475569;font-size:14px}
+.q{background:#fff;border-radius:14px;padding:15px;margin:10px 0;box-shadow:0 2px 9px rgba(0,0,0,.06)}
+.qtext{font-size:17px;font-weight:700;line-height:1.45;margin-bottom:12px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.option{display:flex;align-items:flex-start;gap:9px;min-height:52px;padding:13px 12px;border:1px solid #d8dee8;border-radius:11px;background:#fff;cursor:pointer;line-height:1.4;-webkit-tap-highlight-color:transparent}
+.option input{width:22px;height:22px;min-width:22px;margin:1px 0 0;accent-color:#2563eb}
+.label{font-weight:800;min-width:22px}
+.option.correct{color:#087a3d!important;background:#e7f7ed!important;border:2px solid #31a963!important;font-weight:800}
+.option.correct .label{color:#087a3d}
+.option.wrong{background:#fff0f0!important;border:2px solid #e28b8b!important}
+.feedback{display:none;margin-top:10px;font-weight:700;font-size:14px}
+.actions{position:sticky;bottom:8px;z-index:5;display:flex;gap:10px;margin-top:14px;padding:8px;background:rgba(244,247,251,.94);border-radius:14px}
+.btn{border:0;border-radius:11px;min-height:50px;padding:12px 18px;font-weight:800;font-size:16px;cursor:pointer;touch-action:manipulation}
+.submit{background:#172033;color:#fff;flex:1}
+.new{background:#fff;color:#172033;border:1px solid #cbd5e1;flex:1}
+.result{display:none;background:#fff;border-radius:15px;padding:18px;margin:14px 0;text-align:center;box-shadow:0 3px 14px rgba(0,0,0,.08)}
+.score{font-size:28px;font-weight:900;margin-bottom:5px}
+.percent{font-size:18px;font-weight:800}
+.status{margin-top:8px;color:#475569}
+@media(max-width:700px){.options{grid-template-columns:1fr}.qtext{font-size:16px}.actions{position:sticky;bottom:5px;flex-direction:column}.btn{width:100%}}
+@media(min-width:701px){.wrap{padding-top:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>Sociology MCQ Test 1</h1>
+    <p class="guide"><b>How to use:</b> Select one answer for each question. Tap <b>Submit Test</b> to get your final score and correct answers. Tap <b>New Random Test</b> for another set.</p>
+  </div>
+
+  <div id="result" class="result" aria-live="polite">
+    <div class="score" id="score"></div>
+    <div class="percent" id="percent"></div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <form id="quiz"></form>
+
+  <div class="actions">
+    <button class="btn submit" id="submit" type="button">Submit Test</button>
+    <button class="btn new" id="new" type="button">New Random Test</button>
+  </div>
+</div>
+
+<script>
+const bank = [{"q": "Organised groups are also known as:", "opts": [["A", "Informal groups"], ["B", "Associational groups"], ["C", "Primary groups"], ["D", "Secondary groups"]], "source": "m3", "answer": "B", "id": 59}, {"q": "Alfred Vierkandt belonged to the ___________ school", "opts": [["A", "Synthetic School"], ["B", "Specialistic or Formalistic School"], ["C", "Historical School"], ["D", "Behaviorist School"]], "source": "soc1", "answer": "B", "id": 34}, {"q": "Which philosopher argued for natural rights such as life, liberty, and property?", "opts": [["A", "Thomas Hobbes"], ["B", "Jean-Jacques Rousseau"], ["C", "John Locke"], ["D", "Baron de Montesquieu"]], "source": "soc1", "answer": "C", "id": 20}, {"q": "What philosophy emphasizes knowledge based on observation and experience?", "opts": [["A", "Rationalism"], ["B", "Idealism"], ["C", "Empiricism"], ["D", "Existentialism"]], "source": "soc1", "answer": "C", "id": 23}, {"q": "The concept of social institutions as “established ways of relationships” was given by:", "opts": [["A", "Kingsley Davis"], ["B", "Morris Ginsberg"], ["C", "Durkheim"], ["D", "MacIver"]], "source": "m4video", "answer": "B", "id": 103}, {"q": "Which example best represents anticipatory socialisation?", "opts": [["A", "A child learning manners at home"], ["B", "A teenager joining a new peer group"], ["C", "A person moving to a new country"], ["D", "A student preparing for a career by learning professional behaviour"]], "source": "m3", "answer": "D", "id": 64}, {"q": "Laws, policies, and national practices are mainly used by which agent of socialisation?", "opts": [["A", "Family"], ["B", "School"], ["C", "State"], ["D", "Peer group"]], "source": "m3", "answer": "C", "id": 70}, {"q": "Kinship relationship that are resulted on marriage, is known as ....................?", "opts": [["A", "Consanguineous Kinship"], ["B", "Affinal kinship"], ["C", "Secondary kinship"], ["D", "Tertiary kinship"]], "source": "econ4", "answer": "B", "id": 137}, {"q": "According to A. W. Green, conflict is:", "opts": [["A", "A peaceful process"], ["B", "A deliberate attempt to oppose others"], ["C", "A form of cooperation"], ["D", "A type of friendship"]], "source": "m3", "answer": "B", "id": 90}, {"q": "Who introduced the term \"Social Control\" in sociology?", "opts": [["A", "Karl Marx"], ["B", "E.A. Ross"], ["C", "Emile Durkheim"], ["D", "Max Weber"]], "source": "m3", "answer": "B", "id": 46}, {"q": "What is meant by an agency of social control?", "opts": [["A", "A personal habit"], ["B", "A tool or institution that enforces social norms"], ["C", "A biological instinct"], ["D", "A natural law"]], "source": "m3", "answer": "B", "id": 50}, {"q": "Rapid growth of cities during industrialization is known as _________", "opts": [["A", "Migration"], ["B", "Industrialization"], ["C", "Urbanization"], ["D", "Socialization"]], "source": "soc1", "answer": "C", "id": 13}, {"q": "According to H.T. Mazumdar, competition helps to:", "opts": [["A", "Increase monopoly"], ["B", "Reduce motivation"], ["C", "Prevent accumulation of power"], ["D", "Promote laziness"]], "source": "m3", "answer": "C", "id": 87}, {"q": "Who is known as the father of Sociology?", "opts": [["A", "Auguste Comte"], ["B", "Emile Durkheim"], ["C", "Max Weber"], ["D", "Karl Marx"]], "source": "soc1", "answer": "A", "id": 1}, {"q": "Norms are:", "opts": [["A", "Scientific laws"], ["B", "Rules that guide behaviour"], ["C", "Economic behaviour"], ["D", "Personal opinions"]], "source": "m4video", "answer": "B", "id": 108}, {"q": "Sanctions are best described as:", "opts": [["A", "Agencies of control"], ["B", "Rules of society"], ["C", "Rewards and punishments"], ["D", "Cultural traditions"]], "source": "m3", "answer": "C", "id": 53}, {"q": "Karl Mannheim classified social control into which two types?", "opts": [["A", "Formal and informal"], ["B", "Positive and negative"], ["C", "Direct and indirect"], ["D", "Conscious and unconscious"]], "source": "m3", "answer": "C", "id": 49}, {"q": "According to Karl Marx, the working class is called ________", "opts": [["A", "Peasants"], ["B", "Proletariat"], ["C", "Artisans"], ["D", "Workers"]], "source": "soc1", "answer": "B", "id": 9}, {"q": "The term role can defined as ....................?", "opts": [["A", "Expected behaviour associated with a status"], ["B", "Persons social conditions"], ["C", "Individual financial conditions"], ["D", "All of the above"]], "source": "econ4", "answer": "D", "id": 146}, {"q": "Sociological techniques include all of the following except:", "opts": [["A", "Sociogram"], ["B", "Sociometry"], ["C", "Social survey"], ["D", "Laboratory experiment"]], "source": "soc1", "answer": "D", "id": 42}, {"q": "Which of the following is NOT a characteristic of a social group?", "opts": [["A", "Mutual awareness"], ["B", "We-feeling"], ["C", "Random crowd gathering"], ["D", "Group norms"]], "source": "m3", "answer": "C", "id": 55}, {"q": "Who introduced the concept of primary and secondary groups?", "opts": [["A", "Sorokin"], ["B", "C.H. Cooley"], ["C", "Sanderson"], ["D", "Ellwood"]], "source": "m3", "answer": "B", "id": 58}, {"q": "Which of the following is a positive sanction?", "opts": [["A", "Imprisonment"], ["B", "Fine"], ["C", "Praise"], ["D", "Social exclusion"]], "source": "m3", "answer": "C", "id": 54}, {"q": "What is primary socialisation?", "opts": [["A", "Learning roles in school and workplace"], ["B", "The first stage of socialisation, mainly through family"], ["C", "Learning new behaviours as an adult"], ["D", "Socialization through peer groups"]], "source": "m3", "answer": "B", "id": 63}, {"q": "Which statement about social change is correct?", "opts": [["A", "It is always negative"], ["B", "It can be planned or unplanned"], ["C", "It only affects rural societies"], ["D", "It occurs at the same speed everywhere"]], "source": "m4video", "answer": "B", "id": 119}, {"q": "Find out a structuralist sociologist?", "opts": [["A", "Leacock"], ["B", "Mac Iver"], ["C", "Talcott Parson"], ["D", "Ginsberg"]], "source": "econ4", "answer": "C", "id": 123}, {"q": "Which agent of socialisation helps individuals develop moral values and a sense of right and wrong?", "opts": [["A", "Peer group"], ["B", "Religion"], ["C", "Workplace"], ["D", "Mass media"]], "source": "m3", "answer": "C", "id": 68}, {"q": "Who defined “Society as a web of social relationship”?", "opts": [["A", "Mac Iver"], ["B", "CH Cooley"], ["C", "Morris Ginsberg"], ["D", "Talcott Parson"]], "source": "econ4", "answer": "A", "id": 122}, {"q": "Gemeinschaft and Gesellshcaft were introduced by _______", "opts": [["A", "Max Weber"], ["B", "Emile Durkheim"], ["C", "Ferdinand Tonnies"], ["D", "Karl Marx"]], "source": "soc1", "answer": "C", "id": 35}, {"q": "Which intellectual movement emphasized reason and rational thinking in Europe during the 17th and 18th centuries?", "opts": [["A", "The Renaissance"], ["B", "The Enlightenment"], ["C", "Romanticism"], ["D", "Scholasticism"]], "source": "soc1", "answer": "B", "id": 17}, {"q": "Which of the following is an informal agency of social control?", "opts": [["A", "Court"], ["B", "Police"], ["C", "Family"], ["D", "Prison"]], "source": "m3", "answer": "C", "id": 52}, {"q": "The book The Social Order was written by ______", "opts": [["A", "Charles Horton Cooley"], ["B", "Robert Bierstedt"], ["C", "Jean-Jacques Rousseau"], ["D", "Auguste Comte"]], "source": "soc1", "answer": "B", "id": 32}, {"q": "Permissive norms refer to:", "opts": [["A", "Duties only"], ["B", "Boundaries of acceptable behaviour"], ["C", "Economic rules"], ["D", "Religious beliefs"]], "source": "m4video", "answer": "B", "id": 109}, {"q": "The word “society” is derived from which Latin word?", "opts": [["A", "Socialis"], ["B", "Socius"], ["C", "Societas"], ["D", "Socio"]], "source": "m4video", "answer": "B", "id": 94}, {"q": "Ascribed status is:", "opts": [["A", "Earned through effort"], ["B", "Given at birth"], ["C", "Temporary"], ["D", "Based on education"]], "source": "m4video", "answer": "B", "id": 112}, {"q": "When a person experiences difficulty in fulfilling the expectations of a single role, it is called ....................?", "opts": [["A", "Role conflict"], ["B", "Role sign"], ["C", "Role strain"], ["D", "Role playing"]], "source": "econ4", "answer": "C", "id": 149}, {"q": "The functional approach views society mainly as:", "opts": [["A", "A fixed structure"], ["B", "A legal system"], ["C", "A continuous process of interaction"], ["D", "A political unit"]], "source": "m4video", "answer": "C", "id": 96}, {"q": "Social institutions are mainly responsible for:", "opts": [["A", "Individual entertainment"], ["B", "Organising and guiding social life"], ["C", "Creating structures"], ["D", "Isolating individuals"]], "source": "m4video", "answer": "B", "id": 102}, {"q": "Karl Mannheim divided sociology into systematic and general and _____ sociology", "opts": [["A", "Historical"], ["B", "Structural"], ["C", "Individual"], ["D", "Empirical"]], "source": "soc1", "answer": "A", "id": 36}, {"q": "The major political event that influenced the emergence of sociology was the ____ of 1789", "opts": [["A", "Industrial Revolution"], ["B", "French Revolution"], ["C", "American Revolution"], ["D", "Russian Revolution"]], "source": "soc1", "answer": "B", "id": 14}, {"q": "Who defined “Social structure as the complex of principal groups and institutions which constitute society”", "opts": [["A", "Karl Marx"], ["B", "Morris Ginsberg"], ["C", "Emile Durkheim"], ["D", "Radcliffe Brown"]], "source": "econ4", "answer": "B", "id": 140}, {"q": "Which agent of socialisation plays an important role during adult life?", "opts": [["A", "Family"], ["B", "Peer group"], ["C", "Workplace"], ["D", "School"]], "source": "m3", "answer": "C", "id": 69}, {"q": "Which of the following is NOT an example of an associational group?", "opts": [["A", "State government"], ["B", "Labour union"], ["C", "Family"], ["D", "Political party"]], "source": "m3", "answer": "C", "id": 56}, {"q": "Which concept emphasizes the importance and freedom of the individual?", "opts": [["A", "Collectivism"], ["B", "Individualism"], ["C", "Totalitarianism"], ["D", "Socialism"]], "source": "soc1", "answer": "B", "id": 27}, {"q": "Piaget's theory is focused on:", "opts": [["A", "Moral development"], ["B", "Role-taking and symbols"], ["C", "Unconscious drives"], ["D", "Cognitive development and social learning"]], "source": "m3", "answer": "D", "id": 45}, {"q": "The primary mode of production in an agrarian society is ....................?", "opts": [["A", "Industrial production"], ["B", "Information technology"], ["C", "Agriculture"], ["D", "Service Sector"]], "source": "econ4", "answer": "C", "id": 127}, {"q": "Which of the following approach consider society as a process?", "opts": [["A", "Conflict perspective"], ["B", "Structuralist approach"], ["C", "Functionalist approach"], ["D", "Symbolic perspective"]], "source": "econ4", "answer": "C", "id": 124}, {"q": "Which of the following is an example of diffusion in social change?", "opts": [["A", "Discovery of blood circulation"], ["B", "Invention of the car"], ["C", "Spread of the English language in India"], ["D", "Industrialisation"]], "source": "m4video", "answer": "C", "id": 118}, {"q": "What is developmental socialisation?", "opts": [["A", "Learning from family in early childhood"], ["B", "Learning in total institutions"], ["C", "Continuous learning through different life stages"], ["D", "Peer pressure during adolescence"]], "source": "m3", "answer": "C", "id": 65}, {"q": "Sociology is the science of ________", "opts": [["A", "Mind"], ["B", "Soul"], ["C", "Society"], ["D", "Individual"]], "source": "soc1", "answer": "C", "id": 33}];
+let questions = [];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function esc(value) {
+  return String(value).replace(/[&<>"']/g, function(c) {
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+
+function render() {
+  questions = shuffle(bank);
+  const form = document.getElementById('quiz');
+  const result = document.getElementById('result');
+
+  result.style.display = 'none';
+  document.getElementById('score').textContent = '';
+  document.getElementById('percent').textContent = '';
+  document.getElementById('status').textContent = '';
+  form.innerHTML = '';
+
+  questions.forEach(function(q, i) {
+    const box = document.createElement('section');
+    box.className = 'q';
+    box.dataset.index = i;
+
+    const opts = shuffle(q.opts);
+    box.innerHTML =
+      '<div class="qtext">' + (i + 1) + '. ' + esc(q.q) + '</div>' +
+      '<div class="options">' +
+      opts.map(function(o) {
+        return '<label class="option" data-letter="' + esc(o[0]) + '">' +
+          '<input type="radio" name="q' + i + '" value="' + esc(o[0]) + '">' +
+          '<span class="label">' + esc(o[0]) + '.</span>' +
+          '<span>' + esc(o[1]) + '</span>' +
+          '</label>';
+      }).join('') +
+      '</div>' +
+      '<div class="feedback"></div>';
+
+    form.appendChild(box);
+  });
+}
+
+function submitTest() {
+  let score = 0;
+
+  questions.forEach(function(q, i) {
+    const box = document.querySelector('.q[data-index="' + i + '"]');
+    const selected = box.querySelector('input[type="radio"]:checked');
+
+    box.querySelectorAll('.option').forEach(function(opt) {
+      opt.classList.remove('correct', 'wrong');
+      if (opt.dataset.letter === q.answer) {
+        opt.classList.add('correct');
+      }
+    });
+
+    const feedback = box.querySelector('.feedback');
+
+    if (selected) {
+      if (selected.value === q.answer) {
+        score++;
+        feedback.textContent = '✓ Correct';
+      } else {
+        box.querySelector('.option[data-letter="' + selected.value + '"]').classList.add('wrong');
+        feedback.textContent = 'Correct answer: ' + q.answer;
+      }
+    } else {
+      feedback.textContent = 'Not answered. Correct answer: ' + q.answer;
+    }
+
+    feedback.style.display = 'block';
+  });
+
+  const total = questions.length;
+  const percentage = Math.round((score / total) * 100);
+
+  document.getElementById('score').textContent = 'Final Score: ' + score + ' / ' + total;
+  document.getElementById('percent').textContent = percentage + '%';
+  document.getElementById('status').textContent =
+    score === total ? 'Excellent!' :
+    percentage >= 80 ? 'Very good!' :
+    percentage >= 50 ? 'Good effort — review the incorrect answers.' :
+    'Keep practising and review the correct answers.';
+
+  const result = document.getElementById('result');
+  result.style.display = 'block';
+  result.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+document.getElementById('submit').addEventListener('click', submitTest);
+document.getElementById('new').addEventListener('click', function() {
+  render();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+render();
+</script>
+</body>
+</html>
