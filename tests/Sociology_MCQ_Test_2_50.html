@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#172033">
+<title>Sociology MCQ Test 2</title>
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:#f4f7fb;color:#172033;font-family:Arial,Helvetica,sans-serif;font-size:16px}
+.wrap{width:min(100% - 16px,1000px);margin:auto;padding:12px 0 100px}
+.top{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 3px 14px rgba(0,0,0,.07)}
+h1{font-size:22px;margin:0 0 10px}
+.guide{margin:0;line-height:1.5;color:#475569;font-size:14px}
+.q{background:#fff;border-radius:14px;padding:15px;margin:10px 0;box-shadow:0 2px 9px rgba(0,0,0,.06)}
+.qtext{font-size:17px;font-weight:700;line-height:1.45;margin-bottom:12px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.option{display:flex;align-items:flex-start;gap:9px;min-height:52px;padding:13px 12px;border:1px solid #d8dee8;border-radius:11px;background:#fff;cursor:pointer;line-height:1.4;-webkit-tap-highlight-color:transparent}
+.option input{width:22px;height:22px;min-width:22px;margin:1px 0 0;accent-color:#2563eb}
+.label{font-weight:800;min-width:22px}
+.option.correct{color:#087a3d!important;background:#e7f7ed!important;border:2px solid #31a963!important;font-weight:800}
+.option.correct .label{color:#087a3d}
+.option.wrong{background:#fff0f0!important;border:2px solid #e28b8b!important}
+.feedback{display:none;margin-top:10px;font-weight:700;font-size:14px}
+.actions{position:sticky;bottom:8px;z-index:5;display:flex;gap:10px;margin-top:14px;padding:8px;background:rgba(244,247,251,.94);border-radius:14px}
+.btn{border:0;border-radius:11px;min-height:50px;padding:12px 18px;font-weight:800;font-size:16px;cursor:pointer;touch-action:manipulation}
+.submit{background:#172033;color:#fff;flex:1}
+.new{background:#fff;color:#172033;border:1px solid #cbd5e1;flex:1}
+.result{display:none;background:#fff;border-radius:15px;padding:18px;margin:14px 0;text-align:center;box-shadow:0 3px 14px rgba(0,0,0,.08)}
+.score{font-size:28px;font-weight:900;margin-bottom:5px}
+.percent{font-size:18px;font-weight:800}
+.status{margin-top:8px;color:#475569}
+@media(max-width:700px){.options{grid-template-columns:1fr}.qtext{font-size:16px}.actions{position:sticky;bottom:5px;flex-direction:column}.btn{width:100%}}
+@media(min-width:701px){.wrap{padding-top:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>Sociology MCQ Test 2</h1>
+    <p class="guide"><b>How to use:</b> Select one answer for each question. Tap <b>Submit Test</b> to get your final score and correct answers. Tap <b>New Random Test</b> for another set.</p>
+  </div>
+
+  <div id="result" class="result" aria-live="polite">
+    <div class="score" id="score"></div>
+    <div class="percent" id="percent"></div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <form id="quiz"></form>
+
+  <div class="actions">
+    <button class="btn submit" id="submit" type="button">Submit Test</button>
+    <button class="btn new" id="new" type="button">New Random Test</button>
+  </div>
+</div>
+
+<script>
+const bank = [{"q": "Social structure refers to:", "opts": [["A", "Individual behaviour only"], ["B", "Random social interactions"], ["C", "Organized pattern of relationships in society"], ["D", "Economic activities only"]], "source": "m4video", "answer": "C", "id": 106}, {"q": "Who are the major empiricist philosophers of the early modern period?", "opts": [["A", "Rene Descartes, Baruch Spinoza, and Gottfried Wilhelm Leibniz"], ["B", "Francis Bacon, John Locke, and David Hume"], ["C", "Immanual Kant, George Berkeley, and Thomas Hobbes"], ["D", "Plato, Aristotle, and Thomas Aquinas"]], "source": "soc1", "answer": "B", "id": 30}, {"q": "Which type of group is a temporary collection of people with no meaningful interaction?", "opts": [["A", "Social group"], ["B", "Associational group"], ["C", "Aggregate"], ["D", "Societal group"]], "source": "m3", "answer": "C", "id": 92}, {"q": "Which of the following is a major function of social institution?", "opts": [["A", "Foster inequality"], ["B", "Encourage conflict"], ["C", "Control and regulate human behaviour"], ["D", "Hinder individual development"]], "source": "econ4", "answer": "C", "id": 135}, {"q": "Mead believed that the self develops through:", "opts": [["A", "Biological instincts"], ["B", "Interaction, communication, and role-taking"], ["C", "Cognitive maturity"], ["D", "Genetic inheritance"]], "source": "m3", "answer": "B", "id": 72}, {"q": "The term .................... is associated with an organized system with a set of goals and defined structure or rules?", "opts": [["A", "Family"], ["B", "Crowd"], ["C", "Institution"], ["D", "All of the above"]], "source": "econ4", "answer": "C", "id": 131}, {"q": "Which of the following is NOT a key feature of social control?", "opts": [["A", "It regulates behaviour"], ["B", "It is universal"], ["C", "It remains fixed and never changes"], ["D", "It can be formal or informal"]], "source": "m3", "answer": "C", "id": 47}, {"q": "The shift from family-based production to factory production is a feature of:", "opts": [["A", "Agrarian society"], ["B", "Industrial society"], ["C", "Post-industrial society"], ["D", "Tribal society"]], "source": "m4video", "answer": "B", "id": 100}, {"q": "Sociology promotes the welfare of marginalized group such as ________ communities.", "opts": [["A", "Urban elite"], ["B", "Tribal"], ["C", "Dominant majority"], ["D", "Corporate executive"]], "source": "soc1", "answer": "B", "id": 43}, {"q": "A \"role set\" refers to:", "opts": [["A", "One role performed by many people"], ["B", "Many roles linked to one status"], ["C", "One role linked to one status"], ["D", "Many statuses linked to one role"]], "source": "m4video", "answer": "B", "id": 115}, {"q": "Becoming a doctor is an example of:", "opts": [["A", "Ascribed status"], ["B", "Social norm"], ["C", "Achieved status"], ["D", "Social value"]], "source": "m4video", "answer": "C", "id": 113}, {"q": "Status acquired by person through birth, it is known as ....................", "opts": [["A", "Achieved status"], ["B", "Ascribed status"], ["C", "No relational status"], ["D", "Role"]], "source": "econ4", "answer": "B", "id": 144}, {"q": "Which of the following is not considered a major social institution?", "opts": [["A", "Family"], ["B", "Education"], ["C", "Kinship"], ["D", "Fashion"]], "source": "econ4", "answer": "D", "id": 134}, {"q": "Who defined sociology as a “science of social institutions?", "opts": [["A", "Emile Durkheim"], ["B", "Auguste Comte"], ["C", "Herbert Spencer"], ["D", "Ginsberg"]], "source": "econ4", "answer": "A", "id": 132}, {"q": "Conflict occurs when people give more importance to:", "opts": [["A", "Common goals"], ["B", "Personal interests"], ["C", "Group harmony"], ["D", "Fair competition"]], "source": "m3", "answer": "B", "id": 89}, {"q": "Which of the following best explains the role of cooperation in society?", "opts": [["A", "It only benefits individuals"], ["B", "It supports social progress and stability"], ["C", "It is unnecessary in modern life"], ["D", "It causes chaos in society"]], "source": "m3", "answer": "B", "id": 81}, {"q": "Which of the following is NOT a basic societal need according to Kingsley Davis?", "opts": [["A", "Population"], ["B", "Specialization"], ["C", "Solidarity"], ["D", "Industrialization"]], "source": "m4video", "answer": "D", "id": 97}, {"q": "The social system that existed in France before the Revolution was called _______", "opts": [["A", "Manorialism"], ["B", "Absolutism"], ["C", "Imperialism"], ["D", "Feudalism"]], "source": "soc1", "answer": "D", "id": 15}, {"q": "The person achieve a status through their own efforts and abilities, this types of status is known as ....................", "opts": [["A", "Affective status"], ["B", "Ascribed status"], ["C", "Affinal status"], ["D", "Achieved status"]], "source": "econ4", "answer": "B", "id": 145}, {"q": "Which revolution prompted the ideals of liberty, equality, and fraternity?", "opts": [["A", "Industrial Revolution"], ["B", "French Revolution"], ["C", "American Revolution"], ["D", "Russian Revolution"]], "source": "soc1", "answer": "B", "id": 22}, {"q": "Which of the following is an example of an involuntary group?", "opts": [["A", "Club"], ["B", "Family"], ["C", "Political party"], ["D", "Trade union"]], "source": "m3", "answer": "B", "id": 57}, {"q": "WG Sumner classified institution in to ....................?", "opts": [["A", "Formal and Informal"], ["B", "Crescive and Enacted"], ["C", "Primary and Secondary"], ["D", "Symbolic and Non symbolic"]], "source": "econ4", "answer": "B", "id": 133}, {"q": "Which of the following is a key characteristic of social change?", "opts": [["A", "It is static"], ["B", "It is continuous"], ["C", "It is predictable in all societies"], ["D", "It only affects government"]], "source": "m4video", "answer": "B", "id": 117}, {"q": "Which of the following is a negative consequence of social control?", "opts": [["A", "Social unity"], ["B", "Exploitation and domination"], ["C", "Peace and stability"], ["D", "Cooperation"]], "source": "m3", "answer": "B", "id": 48}, {"q": "According to H. M. Johnson, status consists of:", "opts": [["A", "Rights and obligations"], ["B", "Power and prestige"], ["C", "Wealth and authority"], ["D", "Roles and norms"]], "source": "m4video", "answer": "A", "id": 111}, {"q": "The sociologist who explained the concept of division of labour in modern society is __________", "opts": [["A", "Auguste Comte"], ["B", "Emile Durkheim"], ["C", "Max Weber"], ["D", "Karl Marx"]], "source": "soc1", "answer": "B", "id": 11}, {"q": "Alteration or changes in social organization, process, function and structure of society, it is termed as ....................?", "opts": [["A", "Social process"], ["B", "Social institution"], ["C", "Social change"], ["D", "Social status"]], "source": "econ4", "answer": "B", "id": 151}, {"q": "The network of relationship and expectations that accompanying a particular positions, it is termed as ....................?", "opts": [["A", "Multiple role"], ["B", "Role set"], ["C", "Role signs"], ["D", "None of the above"]], "source": "econ4", "answer": "B", "id": 148}, {"q": "Competition is best described as a:", "opts": [["A", "Friendly cooperation"], ["B", "Goal-oriented conflict"], ["C", "Social harmony"], ["D", "Complete equality"]], "source": "m3", "answer": "B", "id": 84}, {"q": "The word society derived from which language?", "opts": [["A", "Spanish"], ["B", "French"], ["C", "Latin"], ["D", "German"]], "source": "econ4", "answer": "C", "id": 121}, {"q": "Which of the following best describes accommodation?", "opts": [["A", "Complete cultural fusion"], ["B", "Temporary adjustment to avoid conflict"], ["C", "Biological adaptation"], ["D", "Elimination of differences"]], "source": "m3", "answer": "B", "id": 76}, {"q": "Which group has a formal structure with written rules and defined membership?", "opts": [["A", "Aggregate"], ["B", "Societal group"], ["C", "Social group"], ["D", "Associational group"]], "source": "m3", "answer": "D", "id": 93}, {"q": "In sociology, a role refers to:", "opts": [["A", "A person's self esteem"], ["B", "A person's personal opinion"], ["C", "A person's physical appearance"], ["D", "The expected behaviour of a person in a position"]], "source": "m4video", "answer": "D", "id": 114}, {"q": "According to R. M. MacIver, society is best described as:", "opts": [["A", "A group of individuals"], ["B", "A collection of institutions"], ["C", "A web of social relationships"], ["D", "A political organization"]], "source": "m4video", "answer": "C", "id": 95}, {"q": "The book written by Friedrich Engels about workers in England is _______", "opts": [["A", "Das Kapital"], ["B", "The Condition of the Working Class in England"], ["C", "The Communist Manifesto"], ["D", "The Orogin of the Family, Private Property and the state"]], "source": "soc1", "answer": "B", "id": 12}, {"q": "Which of the following is a characteristics of agrarian society in terms of its social structure?", "opts": [["A", "Civilized and urbanized"], ["B", "Impersonal and rational relations"], ["C", "Community oriented and personal relationship"], ["D", "Complex bureaucratic structure"]], "source": "econ4", "answer": "A", "id": 129}, {"q": "Which of the following is not a type of role proposed by Banton?", "opts": [["A", "Basic role"], ["B", "General role"], ["C", "Non-relational role"], ["D", "Independent role"]], "source": "econ4", "answer": "C", "id": 147}, {"q": "Status refers to ....................", "opts": [["A", "Obligation of an individual"], ["B", "Temporary role of an person"], ["C", "Position of an Individual"], ["D", "Affective action"]], "source": "econ4", "answer": "C", "id": 142}, {"q": "Which is the first and most basic agent of socialisation?", "opts": [["A", "School"], ["B", "Peer group"], ["C", "Family"], ["D", "Mass media"]], "source": "m3", "answer": "B", "id": 67}, {"q": "The transformation from an agrarian economy to an industrial economy is called _________", "opts": [["A", "Industrialization"], ["B", "Migration"], ["C", "Industrial revolution"], ["D", "Urbanization"]], "source": "soc1", "answer": "C", "id": 8}, {"q": "The word society derived from ....................?", "opts": [["A", "Social"], ["B", "Socius"], ["C", "Solidarity"], ["D", "Structure"]], "source": "econ4", "answer": "B", "id": 120}, {"q": "Which country first experienced the Industrial Revolution?", "opts": [["A", "Germany"], ["B", "France"], ["C", "Italy"], ["D", "United Kingdom"]], "source": "soc1", "answer": "D", "id": 3}, {"q": "Who developed the philosophy of positivism?", "opts": [["A", "Auguste Comte"], ["B", "Emile Durkheim"], ["C", "Max Weber"], ["D", "Karl Marx"]], "source": "soc1", "answer": "A", "id": 18}, {"q": "Industrial Sociology originated in", "opts": [["A", "USA"], ["B", "India"], ["C", "Europe"], ["D", "Japan"]], "source": "soc1", "answer": "C", "id": 39}, {"q": "Conflict often arises due to insecurity and frustration because:", "opts": [["A", "People feel satisfied"], ["B", "People achieve their goals easily"], ["C", "People are prevented from achieving goals"], ["D", "People have no desires"]], "source": "m3", "answer": "C", "id": 74}, {"q": "What term refers to the separation of religion from social and political life?", "opts": [["A", "Theocracy"], ["B", "Fundamentalism"], ["C", "Secularism"], ["D", "Denominationalism"]], "source": "soc1", "answer": "C", "id": 28}, {"q": "What is socialization?", "opts": [["A", "A biological process of growth"], ["B", "A process of learning social behaviour"], ["C", "A political activity"], ["D", "An economic system"]], "source": "m3", "answer": "B", "id": 60}, {"q": "The study of how social factors like poverty, stress, and environment affect health is part of:", "opts": [["A", "Industrial Sociology"], ["B", "Rural Sociology"], ["C", "Medical Sociology"], ["D", "Urban Sociology"]], "source": "soc1", "answer": "C", "id": 41}, {"q": "Post-industrial society is also known as:", "opts": [["A", "Agrarian society"], ["B", "Industrial society"], ["C", "Information society"], ["D", "Feudal society"]], "source": "m4video", "answer": "C", "id": 101}, {"q": "What is the shift from agrarian to industrial society called?", "opts": [["A", "Migration"], ["B", "Industrialization"], ["C", "Urbanization"], ["D", "Socialization"]], "source": "soc1", "answer": "B", "id": 7}];
+let questions = [];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function esc(value) {
+  return String(value).replace(/[&<>"']/g, function(c) {
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+
+function render() {
+  questions = shuffle(bank);
+  const form = document.getElementById('quiz');
+  const result = document.getElementById('result');
+
+  result.style.display = 'none';
+  document.getElementById('score').textContent = '';
+  document.getElementById('percent').textContent = '';
+  document.getElementById('status').textContent = '';
+  form.innerHTML = '';
+
+  questions.forEach(function(q, i) {
+    const box = document.createElement('section');
+    box.className = 'q';
+    box.dataset.index = i;
+
+    const opts = shuffle(q.opts);
+    box.innerHTML =
+      '<div class="qtext">' + (i + 1) + '. ' + esc(q.q) + '</div>' +
+      '<div class="options">' +
+      opts.map(function(o) {
+        return '<label class="option" data-letter="' + esc(o[0]) + '">' +
+          '<input type="radio" name="q' + i + '" value="' + esc(o[0]) + '">' +
+          '<span class="label">' + esc(o[0]) + '.</span>' +
+          '<span>' + esc(o[1]) + '</span>' +
+          '</label>';
+      }).join('') +
+      '</div>' +
+      '<div class="feedback"></div>';
+
+    form.appendChild(box);
+  });
+}
+
+function submitTest() {
+  let score = 0;
+
+  questions.forEach(function(q, i) {
+    const box = document.querySelector('.q[data-index="' + i + '"]');
+    const selected = box.querySelector('input[type="radio"]:checked');
+
+    box.querySelectorAll('.option').forEach(function(opt) {
+      opt.classList.remove('correct', 'wrong');
+      if (opt.dataset.letter === q.answer) {
+        opt.classList.add('correct');
+      }
+    });
+
+    const feedback = box.querySelector('.feedback');
+
+    if (selected) {
+      if (selected.value === q.answer) {
+        score++;
+        feedback.textContent = '✓ Correct';
+      } else {
+        box.querySelector('.option[data-letter="' + selected.value + '"]').classList.add('wrong');
+        feedback.textContent = 'Correct answer: ' + q.answer;
+      }
+    } else {
+      feedback.textContent = 'Not answered. Correct answer: ' + q.answer;
+    }
+
+    feedback.style.display = 'block';
+  });
+
+  const total = questions.length;
+  const percentage = Math.round((score / total) * 100);
+
+  document.getElementById('score').textContent = 'Final Score: ' + score + ' / ' + total;
+  document.getElementById('percent').textContent = percentage + '%';
+  document.getElementById('status').textContent =
+    score === total ? 'Excellent!' :
+    percentage >= 80 ? 'Very good!' :
+    percentage >= 50 ? 'Good effort — review the incorrect answers.' :
+    'Keep practising and review the correct answers.';
+
+  const result = document.getElementById('result');
+  result.style.display = 'block';
+  result.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+document.getElementById('submit').addEventListener('click', submitTest);
+document.getElementById('new').addEventListener('click', function() {
+  render();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+render();
+</script>
+</body>
+</html>
